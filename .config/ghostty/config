@@ -1,0 +1,36 @@
+keybind = shift+enter=text:\n
+cursor-style = block
+cursor-style-blink = false
+font-family = "Meslo LG M DZ"
+font-size = 14
+window-inherit-font-size = false
+window-padding-x = 12
+window-padding-y = 8
+
+# https://github.com/ghostty-org/ghostty/discussions/4471
+shell-integration-features = no-cursor
+
+# https://github.com/dracula/ghostty
+palette = 0=#21222c
+palette = 1=#ff5555
+palette = 2=#50fa7b
+palette = 3=#f1fa8c
+palette = 4=#bd93f9
+palette = 5=#ff79c6
+palette = 6=#8be9fd
+palette = 7=#f8f8f2
+palette = 8=#6272a4
+palette = 9=#ff6e6e
+palette = 10=#69ff94
+palette = 11=#ffffa5
+palette = 12=#d6acff
+palette = 13=#ff92df
+palette = 14=#a4ffff
+palette = 15=#ffffff
+background = #282a36
+foreground = #f8f8f2
+cursor-color = #f8f8f2
+cursor-text = #282a36
+selection-foreground = #f8f8f2
+selection-background = #44475a
+
