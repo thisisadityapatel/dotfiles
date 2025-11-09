@@ -9,6 +9,7 @@ FORMULAE=(
     "cmake"
     "yarn"
     "poetry"
+    "spaceship"
 )
 
 CASKS=(
@@ -23,12 +24,10 @@ NPM_PACKAGES=(
     "@anthropic-ai/claude-code"
 )
 
-
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
-
 
 log_info() {
     echo -e "${GREEN}[INFO]${NC} $1"
@@ -104,9 +103,44 @@ install_casks() {
     done
 }
 
+setup_spaceship_prompt() {
+    log_info "Setting up Spaceship Prompt..."
+
+    local shell_profile=""
+    if [[ -f ~/.zshrc ]]; then
+        shell_profile=~/.zshrc
+    else
+        shell_profile=~/.zshrc
+        touch "$shell_profile"
+    fi
+
+    if ! grep -q 'spaceship.zsh' "$shell_profile"; then
+        log_info "Adding Spaceship Prompt to $shell_profile"
+        cat >> "$shell_profile" << 'EOF'
+
+# Spaceship Prompt
+source /opt/homebrew/opt/spaceship/spaceship.zsh
+EOF
+        log_info "Spaceship Prompt configured in $shell_profile"
+    else
+        log_info "Spaceship Prompt already configured in $shell_profile"
+    fi
+}
+
+link_dotfiles() {
+    log_info "Linking dotfiles..."
+
+    DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    if [[ -f "$DOTFILES_DIR/ghostty/config" ]]; then
+        mkdir -p ~/.config/ghostty
+        ln -sf "$DOTFILES_DIR/ghostty/config" ~/.config/ghostty/config
+        log_info "Ghostty config linked"
+    fi
+}
+
 main() {
     log_info "Starting dotfiles setup..."
-
     if [[ "$OSTYPE" != "darwin"* ]]; then
         log_error "This script is designed for macOS only"
         exit 1
@@ -116,9 +150,10 @@ main() {
     install_homebrew
     install_formulae
     install_casks
+    setup_spaceship_prompt
+    # link_dotfiles
 
-    log_info "Setup complete! 🎉"
-    log_info "Please restart your terminal or run 'source ~/.zshrc' (or ~/.bash_profile)"
+    log_info "| Setup complete |"
 }
 
 main
