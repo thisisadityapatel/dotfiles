@@ -1,0 +1,31 @@
+[alias]
+	# Amend without prompting for message
+	amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+	b = !git --no-pager branch
+	co = checkout
+	d = diff
+	dm = !sh -c 'git diff HEAD~$1 HEAD' -
+	fc = !sh -c 'git ll | grep \"$1\"' -
+	ff = !sh -c 'git ll -S$1' -
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	ll = log --oneline --decorate
+	p = push
+	s = status
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	excludesfile = ~/.gitignore
+	editor = "/usr/bin/vim"
+[credential]
+	helper = osxkeychain
+[push]
+	default = current
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
