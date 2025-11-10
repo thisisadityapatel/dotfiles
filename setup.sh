@@ -103,30 +103,6 @@ install_casks() {
     done
 }
 
-setup_spaceship_prompt() {
-    log_info "Setting up Spaceship Prompt..."
-
-    local shell_profile=""
-    if [[ -f ~/.zshrc ]]; then
-        shell_profile=~/.zshrc
-    else
-        shell_profile=~/.zshrc
-        touch "$shell_profile"
-    fi
-
-    if ! grep -q 'spaceship.zsh' "$shell_profile"; then
-        log_info "Adding Spaceship Prompt to $shell_profile"
-        cat >> "$shell_profile" << 'EOF'
-
-# Spaceship Prompt
-source /opt/homebrew/opt/spaceship/spaceship.zsh
-EOF
-        log_info "Spaceship Prompt configured in $shell_profile"
-    else
-        log_info "Spaceship Prompt already configured in $shell_profile"
-    fi
-}
-
 link_dotfiles() {
     log_info "Linking dotfiles..."
 
@@ -150,10 +126,7 @@ main() {
     install_homebrew
     install_formulae
     install_casks
-    setup_spaceship_prompt
-    # link_dotfiles
-
-    log_info "| Setup complete |"
+    log_info "Setup complete."
 }
 
 main
