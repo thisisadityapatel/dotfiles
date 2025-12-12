@@ -1,0 +1,24 @@
+{
+  "ssh_connections": [
+    {
+      "host": "moon.cs.torontomu.ca",
+      "username": "a345pate",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/a345pate/./"]
+        }
+      ]
+    }
+  ],
+  "vim_mode": false,
+  "ui_font_size": 15,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
+  },
+  "disable_ai": true,
+  "ensure_final_newline_on_save": false
+}
