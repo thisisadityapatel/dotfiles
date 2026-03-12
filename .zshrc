@@ -93,7 +93,7 @@ function docker-killall() {
   fi
 }
 
-# Check Claude API daily cost
+# Check Claude API
 function ccost() {
-  npx ccusage daily
+  npx ccusage@latest
 }
