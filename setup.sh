@@ -3,7 +3,6 @@
 set -e
 
 FORMULAE=(
-    "docker"
     "awscli"
     "nvm"
     "cmake"
@@ -18,6 +17,12 @@ CASKS=(
     "ghostty"
     "spotify"
     "zen-browser"
+    "raycast"
+    "docker"
+)
+
+RAYCAST_EXTENSIONS=(
+    "nyatinte/ccusage"
 )
 
 NPM_PACKAGES=(
@@ -103,6 +108,15 @@ install_casks() {
     done
 }
 
+install_raycast_extensions() {
+    log_info "Installing Raycast extensions..."
+    for ext in "${RAYCAST_EXTENSIONS[@]}"; do
+        log_info "Installing Raycast extension: $ext..."
+        open "raycast://extensions/$ext/install"
+        sleep 2
+    done
+}
+
 link_dotfiles() {
     log_info "Linking dotfiles..."
 
@@ -126,6 +140,7 @@ main() {
     install_homebrew
     install_formulae
     install_casks
+    install_raycast_extensions
     log_info "Setup complete."
 }
 
